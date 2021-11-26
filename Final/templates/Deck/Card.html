@@ -1,0 +1,189 @@
+{% extends 'Base.html' %}
+
+{% block title %} {{ deck.name if deck else "Not Found" }} {% endblock %}
+
+{% block customLinks %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/card.css') }}" />
+{% endblock %}
+
+{% block mainContent %}
+<div id="deck">
+    <div class="container deckDetails">
+        {% if deck %}
+            <h1 class="headline">
+                {{ deck.name }}
+                    <div class="float-end">
+                        {% if deck.created_by_id == user.id %}
+                            <a onclick="return confirm('Are you sure you want to delete?')" 
+                                href="{{url_for('deck.delete_deck', deck_id=deck.id) }}"
+                                class="btn updateProfile btn-secondary  d-inline-block float-end">
+                                Delete Deck
+                            </a>
+                            <a href="{{url_for('card.add_card', deck_id=deck.id) }}" class="btn  me-3 mb-3 updateProfile  d-inline-block float-end">
+                                Add Card
+                            </a>
+                            <button data-bs-toggle="modal" data-bs-target="#update_deck"
+                                class="btn updateProfile mb-3 me-3  d-inline-block">
+                                Update Deck
+                            </button>
+                        {% else %}
+                            {% if cards|length > 0 %}
+                                <a href="{{ url_for('card.download_excel', deck_id=deck.id) }}" class="btn ms-auto me-0 updateProfile h-50">
+                                    Download Cards as Excel
+                                </a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+            </h1>
+            <div class="deckRow">
+                <div
+                    class="container bg-white mb-3 d-flex align-items-center deck justify-content-between">
+                    <div>
+                        <h1>
+                            {{ deck.name }}
+                        </h1>
+                        <p>
+                            For
+                            {{ deck.created_for.name if deck.created_for else 'All' }}
+                        </p>
+                    </div>
+                    <div class="right-text">
+                        <p>
+                            {{ deck.number_of_cards }}
+                        </p>
+                        <h6>
+                            ~By {{ deck.user.name }}
+                        </h6>
+                        <p class="small text-secondary ">At {{ deck.created_at.strftime(" %H:%M:%S, %d/%m/%Y") }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            {% if cards|length > 0 %}
+                <a href="{{ url_for('review.review_form', deck_id=deck.id) }}" class="btn updateProfile mb-5 mt-5 mx-auto d-block w-25 p-2 fs-4">
+                    Start Test
+                </a>
+            {% else %}
+                <h6>No Questions Added</h6>
+            {% endif %}
+        {% if deck.created_by_id == user.id %}
+            <div class="container">
+                <div class="mb-5 d-flex align-items-end">
+                    <form class="w-50 ms-0" action="{{ url_for('card.import_card', deck_id=deck.id) }}" enctype="multipart/form-data" method="POST">
+                        <h6>Upload Excel</h6>
+                        <div class="input-group">
+                            <input type="file" class="form-control" id="file" 
+                                aria-describedby="file" aria-label="Upload" 
+                                required name="importFile"
+                                accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, .xlsx, .xls">
+                            <button class="btn btn-secondary" type="submit" id="file">Upload</button>
+                        </div>
+                    </form>
+                    
+                    {% if cards|length > 0 %}
+                        <a href="{{ url_for('card.download_excel', deck_id=deck.id) }}" class="btn ms-auto me-0 updateProfile h-50">
+                            Download Cards as Excel
+                        </a>
+                    {% endif %}
+                </div>
+                <div class="row">
+                    {% for card in deck.cards.all() %}
+                        <div class="mb-3 card col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class="card-body" style="min-height: 8em;">
+                                <h1 class="fs-5">{{ card.front }}</h1>
+                            </div>
+                            <div class="card-footer bg-transparent">
+                                <a href="{{ url_for('card.edit_card', card_id=card.id) }}" class="btn mb-2 updateProfile d-block">
+                                    Edit Card
+                                </a>
+                                <a onclick="return confirm('Are you sure you want to delete?')" href="{{ url_for('card.delete_card', card_id=card.id, deck_id=deck.id) }}" class="btn updateProfile btn-secondary d-block">
+                                    Delete Card
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="modal fade" id="update_deck" aria-labelledby="update_deckLabel" aria-hidden="true" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Update {{deck.name}}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form name="updateForm" class="needs-validation" novalidate action="{{ url_for('deck.update_deck', deck_id=deck.id) }}"
+                            method="POST">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <input type="text" name="user_id" hidden value="{{user.id}}">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="{{deck.name}}" required>
+                                    <div class="invalid-feedback">
+                                        Please enter valid name
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Tag</label>
+                                    <div class="d-flex justify-content-start">
+                                        <div>
+                                            <input class="form-check-input" type="radio" name="created_for" 
+                                                {% if deck.created_for.value == "1" %}checked{% endif %} 
+                                                value="STUDENT" id="student">
+                                            <label class="form-check-label" for="student">
+                                                Student
+                                            </label>
+                                        </div>
+                                        <div  class="ms-4">
+                                            <input class="form-check-input" type="radio" name="created_for"
+                                                {% if deck.created_for.value == "2" %}checked{% endif %}
+                                                value="TEACHER" id="teacher">
+                                            <label class="form-check-label" for="teacher">
+                                                Teacher
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="status" class="form-label">Public</label>
+                                    <select class="form-select" id="status" name="public_status" aria-label="Default select example" required>
+                                        <option value="1" {% if deck.public_status %}selected{% endif %}>True</option>
+                                        <option value="0" {% if not deck.public_status %}selected{% endif %}>False</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% else %}
+            <div class="deckRow text-center">
+                <h1 class="">No Deck Found!</h1>
+                <p class="text-secondary">Please check id</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scriptsLinks %}
+<script>
+
+    
+var forms = document.querySelector('form[name="updateForm"]')
+if(forms){
+    forms.addEventListener('submit', function (event) {
+        if (!forms.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+        }
+        forms.classList.add('was-validated')
+    }, false)
+}
+</script>
+{% endblock %}

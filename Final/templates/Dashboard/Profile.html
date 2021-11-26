@@ -1,0 +1,255 @@
+{% extends 'Base.html' %}
+
+{% block title %} Profile {% endblock %}
+
+{% block customLinks %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/profile.css') }}" />
+{% endblock %}
+
+{% block mainContent %}
+<div id="profile">
+
+    <div class="container profileDetails">
+        <h1 class="headline">Account Setting</h1>
+        <div class="profileRow mb-5">
+            <div class="image" align="center">
+                <img src="{{ user.image if user.image else 'https://ptetutorials.com/images/user-profile.png'}}"
+                    alt="{{user.name}}">
+            </div>
+            <div class="details">
+                <h2>{{ user.name if user.name else 'Update Name' }}</h2>
+                <a href="mailto:{{user.email}}" class="uniq_username">{{ user.email }}</a>
+                <p>{{ user.role.name }}</p>
+
+                <button data-bs-toggle="modal" data-bs-target="#updateProfile" class="btn updateProfile">Update
+                    Profile</button>
+                <a class="btn logout" href="{{ url_for('auth.logout') }}">Logout</a>
+                <br>
+            </div>
+            <div class="badge text-center">
+                <div>
+                    <h1>
+                        {{ user.review_response() }}%
+                    </h1>
+                    <p class="text-center">Average Score</p>
+                </div>
+            </div>
+        </div>
+        <hr>
+        {% if final %}
+        <h1 class="headline">Last Reviewed</h1>
+        <div class="progress mt-3 w-75 mx-auto bg-danger" style="height:25px;">
+            <div class="progress-bar bg-success" id="progressBar" role="progressbar">{{final.score}}%</div>
+        </div>
+        <div class="mx-auto d-block w-75">
+            <div class="d-flex align-items-center w-100">
+                <div class="mt-4">
+                    {% if final.deck %}
+                        <a href="{{ url_for('deck.view_deck', deck_id=final.deck.id) }}" class="fs-5">
+                            {{ final.deck.name}}
+                        </a>
+                    {% else %}
+                        <a href="#!" class="fs-5">Deleted Deck</a>
+                    {% endif %}
+                </div>
+                <div class="ms-auto me-0">
+                    <div class="avg_time mt-4">
+                        <h3 class="fs-6">Averge time :- {{ final.avg_time }} sec</h3>
+                    </div>
+                    <div class="completed_at">
+                        <h3 class="fs-6">Completed At :- {{ final.completed_at.strftime(" %H:%M:%S, %d/%m/%Y") }}</h3>
+                    </div>
+                </div>
+            </div>
+            
+            {% if final_decks|length > 0 %}
+			<div class="question_type">
+                <ul>
+                    {% for item in final_cards %}
+                    <li class="{{ item.difficulty.name }}">
+                        {{ item.difficulty.name }} - {{ item[1] }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        <hr>
+        {% endif %}
+        {% if decks|length > 0 %}
+
+        <h1 class="headline">All Reviewed</h1>
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Tag</th>
+                    <th scope="col">Score</th>
+                    <th scope="col">Avg Time</th>
+                </tr>
+            </thead>
+            <tbody class="fs-6">
+                {% for item in decks %}
+                <tr>
+                    <th scope="row">1</th>
+                    <td style="text-align: left;">
+                        <a href="{{ url_for('deck.view_deck', deck_id=item.deck.id) }}" class="fs-6 mt-0">
+                            {{ item.deck.name }}
+                        </a>
+                    </td>
+                    <td>{{ item.deck.created_for.name }}</td>
+                    <td>{{ item.score }}</td>
+                    <td>{{ item.avg_time }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% endif %}
+        <div class="modal fade" id="updateProfile" aria-labelledby="updateProfileLabel" aria-hidden="true"
+            tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Update Profile</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form name="updateForm" class="needs-validation" novalidate
+                        action="{{ url_for('profile.profileUpdate') }}" method="POST">
+                        <div class="modal-body">
+                            {% with messages = get_flashed_messages(category_filter=["error"]) %}
+                            {% if messages %}
+                            {%- for msg in messages %}
+                            <div class="text-danger">
+                                {{ msg }}
+                            </div>
+                            {% endfor -%}
+                            {% endif %}
+                            {% endwith %}
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name"
+                                    value="{{user.name if user.name else ''}}">
+                            </div>
+                            <div class="mb-3 d-flex justify-content-evenly">
+                                <div>
+                                    <input class="form-check-input" type="radio" name="role" value="STUDENT" {% if
+                                        user.role.value=="1" %}checked{% endif %} id="student">
+                                    <label class="form-check-label" for="student">
+                                        Student
+                                    </label>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="radio" name="role" value="TEACHER" {% if
+                                        user.role.value=="2" %}checked{% endif %} id="teacher">
+                                    <label class="form-check-label" for="teacher">
+                                        Teacher
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" name="email" readonly disabled
+                                    placeholder="abcd@abcd.com" value="{{user.email}}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="currentPassword" class="form-label">Current Password</label>
+                                <input type="password" name="currentPassword" class="form-control" id="currentPassword"
+                                    minlength="8" maxlength="20" placeholder="**********">
+                                <div class="invalid-feedback">
+                                    Please enter valid password
+                                    Must be 8-20 characters long.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="newPassword" class="form-label">New Password</label>
+                                <input type="password" name="newPassword" class="form-control" id="newPassword"
+                                    minlength="8" maxlength="20" placeholder="**********">
+                                <div class="invalid-feedback">
+                                    Please enter valid password
+                                    Must be 8-20 characters long.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmNewPassword" class="form-label">Confirm New Password</label>
+                                <input type="password" name="confirmNewPassword" class="form-control"
+                                    id="confirmNewPassword" minlength="8" maxlength="20" placeholder="**********">
+                                <div class="invalid-feedback">
+                                    Please enter valid password
+                                    Must be 8-20 characters long.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scriptsLinks %}
+<script>
+
+    if ($("#progressBar"))
+        $("#progressBar").css("width", "{{final.score}}%");
+
+    var myModal = new bootstrap.Modal(document.getElementById('updateProfile'), {})
+    if ("{{isUpdate}}" === "1") {
+        myModal.show()
+    }
+
+    var empty = "Must Not Be Empty";
+    var notMatch = "Password Not Matching"
+
+    var forms = document.querySelector('form[name="updateForm"]')
+    forms.addEventListener('submit', function (event) {
+        if (!forms.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+        }
+
+        let currentPassword = forms['currentPassword'].value
+
+        if (currentPassword) {
+            let newPassword = forms['newPassword'].value
+            let confirmNewPassword = forms['confirmNewPassword'].value
+            if (!(newPassword !== '' && confirmNewPassword !== '' && newPassword === confirmNewPassword)) {
+                event.preventDefault()
+                event.stopPropagation()
+                if (newPassword === "" || confirmNewPassword === "") {
+
+                    if (newPassword === "") {
+                        forms['newPassword'].classList.add('is-invalid')
+                        forms['newPassword'].setCustomValidity('Empty Not Valid')
+                        forms['newPassword'].parentElement.querySelector('.invalid-feedback').innerHTML = empty
+                    }
+                    if (confirmNewPassword === "") {
+                        forms['confirmNewPassword'].parentElement.querySelector('.invalid-feedback').innerHTML = empty
+                        forms['confirmNewPassword'].classList.add('is-invalid')
+                        forms['confirmNewPassword'].setCustomValidity('Empty Not Valid')
+                    }
+
+                }
+                else if (newPassword !== confirmNewPassword) {
+                    forms['confirmNewPassword'].classList.add('is-invalid')
+                    forms['confirmNewPassword'].setCustomValidity('Password not match')
+                    forms['confirmNewPassword'].parentElement.querySelector('.invalid-feedback').innerHTML = notMatch
+                }
+            } else {
+                forms['newPassword'].classList.add('is-valid')
+                forms['newPassword'].setCustomValidity('')
+                forms['confirmNewPassword'].classList.add('is-valid')
+                forms['confirmNewPassword'].setCustomValidity('')
+            }
+        }
+        forms.classList.add('was-validated')
+    }, false)
+</script>
+{% endblock %}

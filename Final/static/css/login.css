@@ -1,0 +1,222 @@
+@font-face {
+    font-family:Poppins Bold;
+    src: url(/media/Poppins/Poppins-Bold.ttf);
+}
+@font-face {
+    font-family:Poppins Regular;
+    src: url(/media/Poppins/Poppins-Regular.ttf);
+}
+@font-face {
+    font-family:Poppins Medium;
+    src: url(/media/Poppins/Poppins-Medium.ttf);
+}
+
+*, p{
+    margin:0;
+    padding:0;
+}
+:root {
+    --black: #444;
+    --white: #ffffff;
+    --theme: #6642e4;
+    --themeDark: #7b13fa;
+    --buttonColor: #dc3c4d;
+    --buttonColorRGB: rgb(220, 60, 77);
+    --backgroundColor:#f5f5ef;
+    --font-regular:Poppins Regular,sans-serif;
+    --font-medium:Poppins Medium,sans-serif;
+    --font-bold:Poppins Bold,sans-serif;
+}
+
+.loginPage{
+    height: 100vh;
+    overflow: hidden;
+    width: 100%;
+    background-image: url("/media/login.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+    font-family: var(--font-regular);
+}
+
+.loader.loginLoader{
+    background: rgba(255,255,255,0.8);
+}
+.loginPage .container{
+    height: 100%;
+    width: 100%;
+    background: #fff;
+    padding: 0 !important;
+    display: grid;
+    grid-auto-flow: column;
+    border-radius: 10px;
+}
+.loginPage .container .row{
+    margin: 0 !important;
+}
+.loginPage .container .image img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    user-select: none;
+    -webkit-user-select:none;
+}
+.loginContainer{
+    text-align: center;
+}
+.loginContainer h1{
+    margin:10px auto;
+    font-size: 2rem;
+    font-family: Poppins Bold, sans-serif;
+}
+.loginContainer img{
+    width:100%;
+    height: 100%;
+    max-width: 70px;
+    max-height: 70px;
+    object-fit: contain;
+}
+
+.loginContainer form{
+    text-align: left;
+}
+.loginContainer .btn{
+    background: var(--theme);
+    color: var(--white);
+    font-size: 1.2rem;
+    font-family: Poppins Medium, sans-serif;
+    width: 100%;
+    height: auto;
+    padding: 5px;
+    margin:10px auto;
+}
+.loginContainer .btn:hover, .loginContainer .btn:focus{
+    background: var(--theme);
+}
+.loginContainer form{
+    margin-top:15px;
+}
+.loginContainer .contactUs{
+    margin:0 auto;
+    margin-top:20px;
+    width:100%;
+}
+.loginContainer .contactUs p{
+    font-size: 1rem;
+    font-family: Poppins Medium, sans-serif;
+}
+.loginContainer .contactUs a.contact{
+    font-size: 1rem;
+    color: var(--black);
+    text-decoration: none;
+    font-family: Poppins Medium, sans-serif;
+    display: block;
+    margin:5px 0 !important;
+}
+
+.loginContainer .contactUs a:focus{
+    text-decoration: none;
+}
+.loginContainer .contactUs a i{
+    font-size: 1.2rem;
+    color: var(--black);
+    margin-right:10px;
+}
+.loginContainer .contactUs a:hover, .loginContainer .contactUs a:hover i{
+    color: var(--theme);
+}
+.tagLine{
+    font-size:1rem;
+    color:var(--theme);
+    cursor:pointer;
+    text-align:left;
+}
+
+@media screen and (max-width:768px){
+    .loginPage{
+        min-height: 100vh;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        display: block;
+    }
+    .loginPage .container{
+        height: 100%;
+        width: 100%;
+        padding: 15px !important;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    .loginPage .container .col{
+        height: 100%;
+        margin:0;
+    }
+    .loginContainer img{
+        max-width: 130px;
+        max-height: 65px;
+    }
+    .loginContainer h1{
+        margin:10px auto;
+        font-size: 1.8rem;
+    }
+}
+
+@media screen and (max-width: 568px){
+    .loginPage{
+        background-image: url("/media/login_mobile.png");
+    }
+    .loginContainer .contactUs a i{
+        margin-right:5px;
+        margin-left: 5px;
+    }
+    .mobile_number p, p.counter{
+        font-size: 1.25rem;
+        margin-top:12px;
+    }
+    p.counter{
+        font-size: 1rem;
+        margin-top:16px;
+    }
+}
+
+@media screen and (max-height: 600px){
+    .loginContainer .contactUs{
+        margin-top:10px;
+    }
+    .input-field{
+        margin:0 auto;
+    }
+}
+
+@media screen and (max-width: 320px){
+    .loginContainer .contactUs a, .loginContainer .contactUs a i{
+        font-size: 1rem;
+    }
+    .loginContainer .contactUs p.nameAndIcons{
+        text-align: center !important;
+    }
+    .loginContainer .contactUs a{
+        display: block;
+    }
+    .loginContainer .contactUs span.icons{
+        float:none !important;
+    }
+    .loginContainer .contactUs span.icons a{
+        display: inline-block;
+    }
+    .mobile_number label{
+        margin-left:13% !important;
+    }
+    .mobile_number input{
+        width:87% !important;
+        margin-left:13% !important;
+    }
+    .loginContainer .contactUs a.contact{
+        font-size: 1.1rem;
+    }
+}

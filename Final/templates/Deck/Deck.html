@@ -1,0 +1,166 @@
+{% extends 'Base.html' %}
+
+{% block title %} Decks {% endblock %}
+
+{% block customLinks %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/deck.css') }}" />
+{% endblock %}
+
+{% block mainContent %}
+<div id="deck">
+    <div class="container deckDetails">
+        <h1 class="headline">
+            Decks
+            <button data-bs-toggle="modal" data-bs-target="#create_a_deck"
+                class="btn  translate-middle-y updateProfile float-end">
+                Create a Deck
+            </button>
+        </h1>
+        <div class="sort_options">
+            <div class="sorts">
+                <div class="sort_title shadow">
+                    Status <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="option">
+                    <input type="radio" name="sort" id="public" value="0" {% if flag == "0" or not flag %}checked{% endif %} hidden />
+                    <label for="public" class="shadow">
+                        <span>Public</span>
+                    </label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="sort" id="role" value="1" {% if flag == "1" %}checked{% endif %} hidden />
+                    <label for="role" class="shadow">
+                        <span>{{user.role.name.lower()}}</span>
+                    </label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="sort" id="user" value="2" {% if flag == "2" %}checked{% endif %} hidden />
+                    <label for="user" class="shadow">
+                        <span>My Decks</span>
+                    </label>
+                </div>
+                <div class="option">
+                    <input type="radio" name="sort" id="myUnpublish" {% if flag == "3" %}checked{% endif %} value="3" hidden />
+                    <label for="myUnpublish" class="shadow">
+                        <span>My Unpublish</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="deckRow">
+            
+            {% if decks|length > 0 %}
+                {% for item in decks %}
+                    <a href="{{ url_for('deck.view_deck', deck_id=item.id) }}" class="container bg-white mb-3 d-flex align-items-center deck justify-content-between">
+                        <div>
+                            <h1>
+                                {{ item.name }}
+                            </h1>
+                            <p>
+                                For
+                                {{ item.created_for.name if item.created_for else 'All' }}
+                            </p>
+                        </div>
+                        <div class="right-text">
+                            <p>
+                                {{ item.number_of_cards }}
+                            </p>
+                            <h6>
+                                ~By {{ item.user.name }}
+                            </h6>
+                            <p class="small text-secondary ">At {{ item.created_at.strftime(" %H:%M:%S, %d/%m/%Y") }}</p>
+                        </div>
+                    </a>
+                {% endfor %}
+            {% else %}
+                <div class="deckRow text-center">
+                    <h1 class="fs-4">No Deck Found!</h1>
+                </div>
+            {% endif %}
+        </div>
+        <div class="modal fade" id="create_a_deck" aria-labelledby="create_a_deckLabel" aria-hidden="true" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Create A Deck</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form name="createForm" class="needs-validation" novalidate action="{{ url_for('deck.add_deck') }}"
+                        method="POST">
+                        <div class="modal-body">
+                            {% with messages = get_flashed_messages() %}
+                                {% if messages %}
+                                    <div class="text-danger">
+                                        {{ messages[0] }}
+                                    </div>
+                                {% endif %}
+                            {% endwith %}
+                            
+                            <div class="mb-3">
+                                <input type="text" name="user_id" hidden value="{{user.id}}">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" required>
+                                <div class="invalid-feedback">
+                                    Please enter valid name
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Tag</label>
+                                <div class="d-flex justify-content-start">
+                                    <div>
+                                        <input class="form-check-input" type="radio" name="created_for" value="STUDENT" id="student">
+                                        <label class="form-check-label" for="student">
+                                            Student
+                                        </label>
+                                    </div>
+                                    <div  class="ms-4">
+                                        <input class="form-check-input" type="radio" name="created_for" value="TEACHER" id="teacher">
+                                        <label class="form-check-label" for="teacher">
+                                            Teacher
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="created_for" class="form-label">Public</label>
+                                <select class="form-select" id="created_for" name="public_status" aria-label="Default select example" required>
+                                    <option value="1" selected>True</option>
+                                    <option value="0">False</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scriptsLinks %}
+<script>
+    
+    var myModal = new bootstrap.Modal(document.getElementById('create_a_deck'), {})
+    if ("{{isForm}}" === "1") {
+        myModal.show()
+    }
+
+    $(':radio[name="sort"]').change(function() {
+        var sort = $(this).filter(':checked').val();
+        window.location.href="/?flag="+sort;
+    });
+    
+    var forms = document.querySelector('form[name="createForm"]')
+    forms.addEventListener('submit', function (event) {
+        if (!forms.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+        }
+        forms.classList.add('was-validated')
+    }, false)
+</script>
+{% endblock %}

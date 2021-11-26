@@ -1,0 +1,43 @@
+#deck{
+    position: relative;
+    height: 100%;
+}
+#deck .container{
+    padding:10px 15px;
+    background: var(--backgroundColor);
+}
+#deck .deckDetails{
+    max-width:70%;
+    margin-bottom: 100px;
+}
+.right-text{
+    text-align: right;
+}
+.deck h1{
+    font-size: 1.3rem;
+    font-family: var(--font-medium);
+    margin-bottom: 5px;
+}
+.deck h6{
+    font-size: 0.95rem;
+    font-family: var(--font-medium);
+    margin-bottom: 0;
+}
+.btn.updateProfile{
+    border: var(--buttonColor) 1px solid;
+    background:var(--buttonColor);
+    border-radius: 50px;
+    color:white;
+    font-size:1.1rem;
+    height: auto;
+    padding: 2px 25px;
+    font-family: Poppins Regular, sans-serif;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+.btn.updateProfile.btn-secondary{
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+

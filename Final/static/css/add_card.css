@@ -1,0 +1,56 @@
+#add_card{
+    position: relative;
+    height: 100%;
+}
+#add_card .container{
+    padding:10px 15px;
+    background: var(--backgroundColor);
+}
+#add_card .add_cardDetails{
+    max-width:70%;
+    margin-bottom: 100px;
+}
+#add_card .row{
+    margin:0;
+}
+.right-text{
+    text-align: right;
+}
+.add_card h1{
+    font-size: 1.3rem;
+    font-family: var(--font-medium);
+    margin-bottom: 5px;
+}
+.add_card h6{
+    font-size: 0.95rem;
+    font-family: var(--font-medium);
+    margin-bottom: 0;
+}
+.add_cardDetails .row, .add_cardDetails form{
+    margin:0;
+    padding: 0 !important;
+}
+.add_cardDetails form .input-field.col{
+    padding-left: 0 !important;
+}
+.add_cardDetails form .input-field.col label{
+    left:0;
+}
+.btn.updateProfile{
+    border: var(--buttonColor) 1px solid;
+    background:var(--buttonColor);
+    border-radius: 50px;
+    color:white;
+    font-size:1.1rem;
+    height: auto;
+    padding: 2px 25px;
+    font-family: Poppins Regular, sans-serif;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+.btn.updateProfile.btn-secondary{
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+

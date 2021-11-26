@@ -1,0 +1,82 @@
+{% extends 'Base.html' %}
+
+{% block title %} Add Card {% endblock %}
+
+{% block customLinks %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/add_card.css') }}" />
+{% endblock %}
+
+{% block mainContent %}
+<div id="add_card">
+    <div class="container add_cardDetails">
+        {% if user.decks.all()|length == 0 %}
+            <h1 class="fs-4">
+                Please add a deck from 
+                <a style="color: #0d6efd;" href="{{url_for('profile.home')}}">here</a> to continue
+            </h1>
+        {% else %}
+        <form name="addForm" class="needs-validation" novalidate
+            action="{{url_for('card.edit_card', card_id=card.id) if card else url_for('card.add_card') }}" method="POST">
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="deck" class="form-label">Deck</label>
+                    <select class="form-select" id="deck" name="deck_id" aria-label="Deck" required>
+                        {% for deck in user.decks %}
+                            <option value="{{deck.id}}" {% if (card and card.deck_id==deck.id) or deck_id==deck.id %}selected{%endif%}>{{deck.name}}</option>
+                        {% endfor %}
+                    </select>
+                    <div class="invalid-feedback">
+                        Please enter valid input
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="front" class="form-label">Front</label>
+                    <input type="text" class="form-control" id="front" name="front" value="{{ card.front if card }}" placeholder="Enter front" required>
+                    <div class="invalid-feedback">
+                        Please enter valid input
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="back" class="form-label">Back</label>
+                    <input type="text" class="form-control" id="back" name="back" value="{{ card.back if card }}" placeholder="Enter Back" required>
+                    <div class="invalid-feedback">
+                        Please enter valid input
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="options" class="form-label">Options</label>
+                    <textarea class="form-control" id="options" name="options" rows="3"  required>{{ card.options if card and card.options else "" }}</textarea>
+                    <div class="helpText">
+                        Separate by comma ","
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter options
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="{{url_for('deck.view_deck', deck_id=card.deck_id) if card else url_for('profile.home') }}" class="btn btn-secondary">Close</a>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </form>
+        {%endif%}
+    </div>
+</div>
+{% endblock %}
+
+{% block scriptsLinks %}
+<script>
+
+
+    var forms = document.querySelector('form[name="addForm"]')
+    if(forms){
+        forms.addEventListener('submit', function (event) {
+            if (!forms.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            forms.classList.add('was-validated')
+        }, false)
+    }
+</script>
+{% endblock %}

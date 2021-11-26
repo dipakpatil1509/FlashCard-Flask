@@ -1,0 +1,185 @@
+{% extends 'Base.html' %}
+
+{% block title %} {{deck.name}} {% endblock %}
+
+{% block customLinks %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/review.css') }}" />
+{% endblock %}
+
+{% block mainContent %}
+<div id="review">
+    <div class="container-sm w-75 bg-light p-2 pb-5 mt-5">
+
+        {% if isFinish %}
+            <h1 class="text-center fs-4 mt-5">Congratulations! You have completed the deck!</h1>
+            <div class="progress mt-5 w-75 mx-auto bg-danger" style="height:25px;">
+                <div class="progress-bar bg-success" id="progressBar" role="progressbar">{{final.score}}%</div>
+            </div>
+            <div class="mx-auto d-block w-75">
+                <div class="avg_time mt-4">
+                    <h3 class="fs-5">Averge time :- {{ final.avg_time }} sec</h3>
+                </div>
+                <div class="completed_at">
+                    <h3 class="fs-5">Completed At :- {{ final.completed_at.strftime(" %H:%M:%S, %d/%m/%Y") }}</h3>
+                </div>
+                <div class="question_type">
+                    <ul>
+                        {% for item in final_cards %}
+                            <li class="{{ item.difficulty.name }}">
+                                {{ item.difficulty.name }} - {{ item[1] }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <a href="{{ url_for('profile.home') }}" class="btn btn-primary mx-auto mt-5 d-block w-50">
+                    Go Home
+                </a>
+            </div>
+        {% else %}
+            <h6 class="time fs-5 text-center d-block ms-auto"></h6>
+            <div class="question_card">
+                <h1 class="text-center">
+                    {{card.front}}
+                    <span id="answer"></span>
+                </h1>
+            </div>
+            <ul class="list-group">
+                {% for option in card.options %}
+                {%- if option -%}
+                <li class="list-group-item">
+                    <input class="form-check-input" type="radio" name="_{{card.id}}" value="{{-option-}}"
+                        id="{{option}}_{{loop.index}}">
+                    <label class="form-check-label" for="{{option}}_{{loop.index}}">
+                        {{option}}
+                    </label>
+                </li>
+                {%- endif -%}
+                {% endfor %}
+            </ul>
+            <button onclick="return submitAnswer()" class="btn btn-primary w-25 mx-auto mt-3 d-block">
+                <span id="submit_text">
+                    Show answer
+                </span>
+                <div class="spinner-border d-none spinner-border-sm" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </button>
+
+            <form action="{{ url_for('review.review_form_post', deck_id=deck.id) }}" class="d-none" name="afterSubmit" method="POST">
+                <input type="text" name="next" id="next" value="{{card.next}}" hidden>
+                <input type="text" name="response_id" id="response_id" hidden>
+                <div class="sort_options">
+                    <h5 class="d-block w-100 text-center">
+                        Difficulty Level
+                    </h5>
+                    <div class="sorts mx-auto w-100">
+                        <div class="option">
+                            <input type="radio" name="difficulty" id="easy" value="1" hidden />
+                            <label for="easy" class="shadow">
+                                <span>Easy</span>
+                            </label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="difficulty" id="modarate" value="2" checked hidden />
+                            <label for="modarate" class="shadow">
+                                <span>Moderate</span>
+                            </label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="difficulty" id="hard" value="3" hidden />
+                            <label for="hard" class="shadow">
+                                <span>Hard</span>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Next <iclass="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </form>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scriptsLinks %}
+<script>
+
+    if($("#progressBar"))
+        $("#progressBar").css("width","{{final.score}}%");
+
+    var expected = 1;
+    var prev = 0
+        
+    var timeh6 = $('.time')
+    if(timeh6){
+        timeh6.text(expected + " sec")
+
+        var interval = setInterval(() => {
+            prev= expected
+            expected += 1
+            timeh6.text(expected + " sec")
+        }, 1000);
+    }
+
+    
+    var forms = document.querySelector('form[name="afterSubmit"]')
+
+    function submitAnswer(e) {
+        var input = $(':radio[name=_{{card.id}}]').filter(':checked').val();
+
+        if(!input){
+            return false
+        }
+
+        clearInterval(interval)
+        
+        document.querySelector('#submit_text').classList.add('d-none')
+        document.querySelector('.spinner-border ').classList.remove('d-none')
+        var question_card = document.querySelector('.question_card')
+
+        $.ajax({
+            method: "GET",
+            url: '{{ url_for("review.check_answer") }}?card_id={{card.id}}&&time='+ prev + '&&answer='+input,
+            dataType: 'json',
+            async: false,
+            success: function(data){
+                console.log("success");
+                if(data.redirect){
+                    return window.location.href = "/start_test/{{deck.id}}"
+                }
+                if(data.correct){
+                    question_card.classList.add('bg-success')
+                }else{
+                    question_card.classList.add('bg-danger')
+                }
+            
+                question_card.classList.add('show-answer')
+                
+                document.querySelector('#answer').innerHTML = data.answer
+                $(':radio[name=_{{card.id}}]').prop('disabled', true)
+                document.querySelector('#submit_text').parentElement.remove()
+                document.querySelector('form[name="afterSubmit"]').classList.remove('d-none')
+
+                forms.querySelector('[name="response_id"]').value = data.response_id
+            },
+            failure: function(data){
+                console.log("failure");
+                
+                document.querySelector('#submit_text').classList.remove('d-none')
+                document.querySelector('.spinner-border ').classList.add('d-none')
+            },
+            
+        });
+
+    }
+    if(forms){
+        forms.addEventListener('submit', function (event) {
+            if (!forms.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            forms.classList.add('was-validated')
+        }, false)
+    }
+</script>
+{% endblock %}
