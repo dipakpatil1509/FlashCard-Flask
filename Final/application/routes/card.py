@@ -20,6 +20,7 @@ card_output_fields = {
     "options": fields.String,
     "created_at":fields.DateTime,
     "created_by_id": fields.Integer,
+    "deck_id":fields.Integer,
 }
 
 
@@ -43,7 +44,9 @@ def api_deck(card_id):
 
 @marshal_with(card_output_fields)
 def api_get(card_id):
-    return get(card_id), 200
+    data = get(card_id)
+    data.options = ",".join(data.options)
+    return data, 200
 
 #API GET
 def get(card_id):

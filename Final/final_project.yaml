@@ -1,0 +1,2209 @@
+_type: export
+__export_format: 4
+__export_date: 2021-11-27T16:35:02.009Z
+__export_source: insomnia.desktop.app:v2021.6.0
+resources:
+  - _id: req_92801a5781d34aa389ed2886f6666211
+    parentId: wrk_0a6be4d0c8e34c969003f894cc3de7c4
+    modified: 1638030760891
+    created: 1638030760891
+    url: "{{ base_url }}/api/deck/{{ deck_id }}"
+    name: /api/deck/{deck_id}
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638027156288
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_0a6be4d0c8e34c969003f894cc3de7c4
+    parentId: null
+    modified: 1638030760816
+    created: 1638030760816
+    name: final_project.yaml
+    description: ""
+    scope: design
+    _type: workspace
+  - _id: req_f595330851794ded95f314b95daa84a1
+    parentId: wrk_0a6be4d0c8e34c969003f894cc3de7c4
+    modified: 1638030760889
+    created: 1638030760889
+    url: "{{ base_url }}/api/deck/{{ deck_id }}"
+    name: /api/deck/{deck_id}
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638027156287
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_00ac8f6040bb4b9c94b13494b0d99f11
+    parentId: wrk_0a6be4d0c8e34c969003f894cc3de7c4
+    modified: 1638030760886
+    created: 1638030760886
+    url: "{{ base_url }}/api/deck/{{ deck_id }}"
+    name: /api/deck/{deck_id}
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "name": "Testing",
+          "public_status": "1",
+          "user_id": 1,
+          "created_for": "STUDENT"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1638027156286
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_65269a31f7c240cfbf94f7bf97cc85dc
+    parentId: wrk_0a6be4d0c8e34c969003f894cc3de7c4
+    modified: 1638030760882
+    created: 1638030760882
+    url: "{{ base_url }}/api/deck/{{ deck_id }}"
+    name: /api/deck/{deck_id}
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638027156285
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_3f10d7eb428749d39d6c6999b9c7e7fe
+    parentId: wrk_0a6be4d0c8e34c969003f894cc3de7c4
+    modified: 1638030760880
+    created: 1638030760880
+    url: "{{ base_url }}/api/course"
+    name: /api/course
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638027156283
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_cd15eb0b90a2461cba551dc34fef1375
+    parentId: wrk_0a6be4d0c8e34c969003f894cc3de7c4
+    modified: 1638030760873
+    created: 1638030760873
+    url: "{{ base_url }}/api/course"
+    name: /api/course
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "course_name": "Maths1",
+          "course_code": "MA101",
+          "course_description": "Course Description Example"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1638027156282
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_ab4c3db861ca4d47b33fddde018cb820
+    parentId: wrk_0a6be4d0c8e34c969003f894cc3de7c4
+    modified: 1638030760870
+    created: 1638030760870
+    url: "{{ base_url }}/api/student/{{ student_id }}"
+    name: /api/student/{student_id}
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638027156281
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_156ef955c4664e38a53ef9a68f4fbb54
+    parentId: wrk_0a6be4d0c8e34c969003f894cc3de7c4
+    modified: 1638030760866
+    created: 1638030760866
+    url: "{{ base_url }}/api/student/{{ student_id }}"
+    name: /api/student/{student_id}
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638027156279
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_37266552b0df40ed8117abd0b9a6c396
+    parentId: wrk_0a6be4d0c8e34c969003f894cc3de7c4
+    modified: 1638030760864
+    created: 1638030760864
+    url: "{{ base_url }}/api/student/{{ student_id }}"
+    name: /api/student/{student_id}
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "first_name": "Narendra",
+          "last_name": "Mishra",
+          "roll_number": "MA19M010"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1638027156278
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_e7bce12fa3114e958e1968756dbc0cde
+    parentId: wrk_0a6be4d0c8e34c969003f894cc3de7c4
+    modified: 1638030760862
+    created: 1638030760862
+    url: "{{ base_url }}/api/student/{{ student_id }}"
+    name: /api/student/{student_id}
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638027156276
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_0858f348e7f14b948f094926844a64b5
+    parentId: wrk_0a6be4d0c8e34c969003f894cc3de7c4
+    modified: 1638030760859
+    created: 1638030760859
+    url: "{{ base_url }}/api/student"
+    name: /api/student
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638027156275
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_1d1abc07fb4d40c9a71e4b85e503d2b7
+    parentId: wrk_0a6be4d0c8e34c969003f894cc3de7c4
+    modified: 1638030760857
+    created: 1638030760857
+    url: "{{ base_url }}/api/student"
+    name: /api/student
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "first_name": "Narendra",
+          "last_name": "Mishra",
+          "roll_number": "MA19M010"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1638027156273
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_64233344a553478895194383ed0c3736
+    parentId: wrk_0a6be4d0c8e34c969003f894cc3de7c4
+    modified: 1638030760855
+    created: 1638030760855
+    url: "{{ base_url }}/api/student/{{ student_id }}/course"
+    name: /api/student/{student_id}/course
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638027156272
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_22b0b168030a484cb9b4720ffe245d64
+    parentId: wrk_0a6be4d0c8e34c969003f894cc3de7c4
+    modified: 1638030760852
+    created: 1638030760852
+    url: "{{ base_url }}/api/student/{{ student_id }}/course"
+    name: /api/student/{student_id}/course
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638027156270
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_fe198c57c2044e2888429e95be930a23
+    parentId: wrk_0a6be4d0c8e34c969003f894cc3de7c4
+    modified: 1638030760849
+    created: 1638030760849
+    url: "{{ base_url }}/api/student/{{ student_id }}/course"
+    name: /api/student/{student_id}/course
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "course_id": 12345
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1638027156269
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_f6d47aed2e444e438827ee60eba7e065
+    parentId: wrk_0a6be4d0c8e34c969003f894cc3de7c4
+    modified: 1638030760846
+    created: 1638030760846
+    url: "{{ base_url }}/api/student/{{ student_id }}/course/{{ course_id }}"
+    name: /api/student/{student_id}/course/{course_id}
+    description: ""
+    method: DESCRIPTION
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638027156265
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_6f182aed66bd4d318ba6d95569d09b49
+    parentId: wrk_0a6be4d0c8e34c969003f894cc3de7c4
+    modified: 1638030760843
+    created: 1638030760843
+    url: "{{ base_url }}/api/student/{{ student_id }}/course/{{ course_id }}"
+    name: /api/student/{student_id}/course/{course_id}
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1638027156261
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_06eaa800a05640c4af3bc83a93b6b6d1
+    parentId: wrk_0a6be4d0c8e34c969003f894cc3de7c4
+    modified: 1638030760822
+    created: 1638030760822
+    name: Base Environment
+    data:
+      base_url: "{{ scheme }}://{{ host }}{{ base_path }}"
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1638021050747
+    _type: environment
+  - _id: jar_e3c2392df09946fea2989cf42582ec9c
+    parentId: wrk_0a6be4d0c8e34c969003f894cc3de7c4
+    modified: 1638030760830
+    created: 1638030760830
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_446a805baa4e4999928295409f0d7528
+    parentId: wrk_0a6be4d0c8e34c969003f894cc3de7c4
+    modified: 1638030808086
+    created: 1638030760838
+    fileName: final_project.yaml
+    contents: "openapi: 3.0.0
+
+      info:
+
+      \  title: Modern App Development Final Project
+
+      \  description: >
+
+      \    <div>
+
+      \      <h4>
+
+      \        In this project, according to me, we have to create a web\ 
+
+      \      application which can be used for practising questions.\ 
+
+      \      It can also be used as an Exam Portal, which can be used by\ 
+
+      \      either teachers or students.
+
+      \      </h4>
+
+      \      <h4>
+
+      \       \ 
+
+      \        Python v3.9.6
+
+      \      </h4>
+
+      \    <h3>Technologies used:</h3>
+
+      \    <ol>\ 
+
+      \      <li>
+
+      \        <h4>Mandatory Technologies</h4>
+
+      \       \ 
+
+      \        Flask v2.0.2 for application code
+
+      \        Jinja2 v3.0.2 for templates HTML generation
+
+      \        Bootstrap v5.1.3 and FontAwesome v5.3.1 for Styling and
+      icons respectively
+
+      \        SQLite for data storage and Flask-SQLAlchemy v2.5.1 as SQL
+      Toolkit    \ 
+
+      \      </li>
+
+      \      <li>
+
+      \        <h4>Other Technologies</h4>
+
+      \       \ 
+
+      \        Email-validator v1.1.3 for validating email
+
+      \        Flask-Login v0.5.0 for user login system
+
+      \        Flask-RESTful v0.3.9 for Restful APIs
+
+      \        Pandas v1.3.4 for importing and exporting cards in Excel
+      file
+
+      \        jQuery v3.6.0 for easy handling of DOM
+
+      \      </li>
+
+      \     \ 
+
+      \    </ol>
+
+      \    </div>
+
+
+      \    <h3> User Table Schema </h3>\ 
+
+      \    <table>
+
+      \      <thead>
+
+      \        <th>Column Name</th>
+
+      \        <th>Column Type</th>
+
+      \        <th>Constraints</th>
+
+      \      </thead>
+
+      \      <tbody>
+
+      \      <tr>
+
+      \        <td>id</td>
+
+      \        <td>Integer</td>
+
+      \        <td>Primary Key, Auto Increment</td>
+
+      \      </tr>
+
+      \      <tr>
+
+      \        <td>email</td>
+
+      \        <td>String</td>
+
+      \        <td>Max Length 100, Unique, Not Null</td>
+
+      \      </tr>
+
+      \      <tr>
+
+      \        <td>password</td>
+
+      \        <td>String</td>
+
+      \        <td>Max Length 255,, Not Null</td>
+
+      \      </tr>     \ 
+
+      \      <tr>
+
+      \        <td>created_at</td>
+
+      \        <td>Datetime</td>
+
+      \        <td>-</td>
+
+      \      </tr>          \ 
+
+      \      <tr>
+
+      \        <td>name</td>
+
+      \        <td>String</td>
+
+      \        <td>Max Length 255</td>
+
+      \      </tr>     \ 
+
+      \      <tr>
+
+      \        <td>role</td>
+
+      \        <td>String</td>
+
+      \        <td>
+
+      \          [\"STUDENT\", \"TEACHER\"], default \"STUDENT\"
+
+      \        </td>
+
+      \      </tr>   \ 
+
+      \    </tbody>
+
+      \    </table>
+
+
+      \    <h3> Deck Table Schema </h3>\ 
+
+      \   \ 
+
+      \    <table>
+
+      \      <thead>
+
+      \        <th>Column Name</th>
+
+      \        <th>Column Type</th>
+
+      \        <th>Constraints</th>
+
+      \      </thead>
+
+      \      <tbody>
+
+      \      <tr>
+
+      \         <td>id</td>
+
+      \        <td>Integer</td>
+
+      \        <td>Primary Key, Auto Increment</td>
+
+      \      </tr>
+
+      \      <tr>
+
+      \        <td>name</td>
+
+      \        <td>String</td>
+
+      \        <td>Unique, Not Null</td>
+
+      \      </tr>
+
+      \      <tr>
+
+      \        <td>created_at</td>
+
+      \        <td>Datetime</td>
+
+      \        <td>-</td>
+
+      \      </tr>     \ 
+
+      \      <tr>
+
+      \        <td>created_for</td>
+
+      \        <td>String</td>
+
+      \        <td>[\"STUDENT\", \"TEACHER\", \"ALL\"], default
+      \"ALL\"</td>
+
+      \      </tr>     \ 
+
+      \      <tr>
+
+      \        <td>public_status</td>
+
+      \        <td>Boolean</td>
+
+      \        <td>-</td>
+
+      \      </tr>     \ 
+
+      \      <tr>
+
+      \        <td>created_by_id</td>
+
+      \        <td>String</td>
+
+      \        <td>Foreign Key (user.id), Not Null</td>
+
+      \      </tr>        \ 
+
+      \    </tbody>
+
+      \    </table>
+
+
+
+      \    <h3> Card Table Schema </h3>\ 
+
+      \    <table>
+
+      \      <thead>
+
+      \        <th>Column Name</th>
+
+      \        <th>Column Type</th>
+
+      \        <th>Constraints</th>
+
+      \      </thead>
+
+      \      <tbody>
+
+      \      <tr>
+
+      \        <td>id</td>
+
+      \        <td>Integer</td>
+
+      \        <td>Primary Key, Auto Increment</td>
+
+      \      </tr>
+
+      \      <tr>
+
+      \        <td>front</td>
+
+      \        <td>String</td>
+
+      \        <td>Not Null</td>
+
+      \      </tr>
+
+      \      <tr>
+
+      \        <td>back</td>
+
+      \        <td>String</td>
+
+      \        <td>Not Null</td>
+
+      \      </tr>
+
+      \      <tr>
+
+      \        <td>options</td>
+
+      \        <td>String</td>
+
+      \        <td>Not Null</td>
+
+      \      </tr>
+
+      \      <tr>
+
+      \        <td>created_at</td>
+
+      \        <td>Datetime</td>
+
+      \        <td>-</td>
+
+      \      </tr> \ 
+
+      \      <tr>
+
+      \        <td>created_by_id</td>
+
+      \        <td>Integer</td>
+
+      \        <td>Foreign Key (user.id), Not Null</td>
+
+      \      </tr>
+
+      \      <tr>
+
+      \        <td>deck_id</td>
+
+      \        <td>Integer</td>
+
+      \        <td>Foreign Key (deck.id), Not Null</td>
+
+      \    </tbody>
+
+      \    </table>
+
+
+      \    <h3> Review Response Table Schema </h3>\ 
+
+      \    <table>
+
+      \      <thead>
+
+      \        <th>Column Name</th>
+
+      \        <th>Column Type</th>
+
+      \        <th>Constraints</th>
+
+      \      </thead>
+
+      \      <tbody>
+
+      \      <tr>
+
+      \        <td>id</td>
+
+      \        <td>Integer</td>
+
+      \        <td>Primary Key, Auto Increment</td>
+
+      \      </tr>
+
+      \      <tr>
+
+      \        <td>avg_time</td>
+
+      \        <td>Float</td>
+
+      \        <td>Not Null</td>
+
+      \      </tr>
+
+      \      <tr>
+
+      \        <td>score</td>
+
+      \        <td>Integer</td>
+
+      \        <td>Not Null</td>
+
+      \      </tr>
+
+      \      <tr>
+
+      \        <td>completed_at</td>
+
+      \        <td>Datetime</td>
+
+      \        <td>-</td>
+
+      \      </tr> \ 
+
+      \      <tr>
+
+      \        <td>user_id</td>
+
+      \        <td>Integer</td>
+
+      \        <td>Foreign Key (user.id), Not Null</td>
+
+      \      </tr>
+
+      \      <tr>
+
+      \        <td>deck_id</td>
+
+      \        <td>Integer</td>
+
+      \        <td>Foreign Key (deck.id), Not Null</td>
+
+      \    </tbody>
+
+      \    </table>
+
+
+      \    <h3> Review Card Table Schema </h3>\ 
+
+      \    <table>
+
+      \      <thead>
+
+      \        <th>Column Name</th>
+
+      \        <th>Column Type</th>
+
+      \        <th>Constraints</th>
+
+      \      </thead>
+
+      \      <tbody>
+
+      \      <tr>
+
+      \        <td>id</td>
+
+      \        <td>Integer</td>
+
+      \        <td>Primary Key, Auto Increment</td>
+
+      \      </tr>
+
+      \      <tr>
+
+      \        <td>correct_option</td>
+
+      \        <td>String</td>
+
+      \        <td>Not Null</td>
+
+      \      </tr>
+
+      \      <tr>
+
+      \        <td>selected_option</td>
+
+      \        <td>String</td>
+
+      \        <td>Not Null</td>
+
+      \      </tr>
+
+      \      <tr>
+
+      \        <td>options</td>
+
+      \        <td>String</td>
+
+      \        <td>Not Null</td>
+
+      \      </tr>
+
+      \     \ 
+
+      \      <tr>
+
+      \        <td>time</td>
+
+      \        <td>Integer</td>
+
+      \        <td>Not Null</td>
+
+      \      </tr>
+
+      \      <tr>
+
+      \        <td>correct</td>
+
+      \        <td>Boolean</td>
+
+      \        <td>-</td>
+
+      \      </tr>
+
+      \      <tr>
+
+      \        <td>difficulty</td>
+
+      \        <td>String</td>
+
+      \        <td>[\"Easy\", \"Moderate\", \"Hard\"], default
+      \"Moderate\"</td>
+
+      \      </tr>
+
+      \      <tr>
+
+      \        <td>completed_at</td>
+
+      \        <td>Datetime</td>
+
+      \        <td>-</td>
+
+      \      </tr> \ 
+
+      \      <tr>
+
+      \        <td>card_id</td>
+
+      \        <td>Integer</td>
+
+      \        <td>Foreign Key (card.id), Not Null</td>
+
+      \      </tr>
+
+      \      <tr>
+
+      \        <td>review_respose_id</td>
+
+      \        <td>Integer</td>
+
+      \        <td>Foreign Key (ReviewResponse.id), Not Null</td>
+
+      \       </tr>
+
+      \       <tr>
+
+      \         <td>card_id, review_respose_id</td>
+
+      \         <td>Constraint</td>
+
+      \         <td>Unique</td>
+
+      \       </tr>
+
+      \    </tbody>
+
+      \    </table>
+
+
+      \    <h3> Error Codes </h3>\ 
+
+      \    <table>
+
+      \      <thead>
+
+      \        <th>Error Code</th>
+
+      \        <th>Message</th>
+
+      \      </thead>
+
+      \      <tbody>
+
+      \      <tr>
+
+      \        <td>400</td>
+
+      \        <td>API Exception.</td>
+
+      \      </tr>
+
+      \      <tr>
+
+      \        <td>404</td>
+
+      \        <td>Not Found.</td>
+
+      \      </tr>
+
+      \      <tr>
+
+      \        <td>409</td>
+
+      \        <td>Already Exist</td>
+
+      \      </tr>
+
+      \    </tbody>
+
+      \    </table>
+
+
+      \  version: 1.0.0
+
+      servers:
+
+      \  - url: http://127.0.0.1:5000/\ 
+
+      paths:
+
+      \  /api/deck/{deck_id}:
+
+      \    description: End point to read, update and delete a deck
+      resource with deck_id = 'deck_id'.
+
+      \    get:
+
+      \      description: Operation to Read Deck.
+
+      \      parameters:
+
+      \        - in: path
+
+      \          name: deck_id
+
+      \          required: true
+
+      \          schema:
+
+      \            type: integer
+
+      \            example: 1
+
+      \      responses:
+
+      \        '200':
+
+      \          description: Request Successful
+
+      \          content:
+
+      \            application/json:
+
+      \              schema:
+
+      \                title: deck object
+
+      \                type: object
+
+      \                properties:
+
+      \                  created_at:
+
+      \                    type: string
+
+      \                    example: 'Thu, 25 Nov 2021 00:21:39 -0000'
+
+      \                  created_by_id:
+
+      \                    type: integer
+
+      \                    example: 2
+
+      \                  created_for:
+
+      \                    type: string
+
+      \                    example: 'Type.STUDENT'
+
+      \                  name:
+
+      \                    type: string
+
+      \                    example: 'My Deck'
+
+      \                  id:
+
+      \                    type: integer
+
+      \                    example: 1
+
+      \                  public_status:
+
+      \                    type: boolean
+
+      \                    example: true
+
+      \        '500':
+
+      \          description: Internal Server Error
+
+      \        '404':
+
+      \          description: Deck not found
+
+      \          content:
+
+      \            application/json:
+
+      \              schema:
+
+      \                title: deck object
+
+      \                type: object
+
+      \                properties:
+
+      \                  error_code:
+
+      \                    type: string
+
+      \                    example: '404'
+
+      \                  error_message:
+
+      \                    type: string
+
+      \                    example: 'Deck not found'
+
+      \    put:
+
+      \      description: Operation to update the deck resource.
+
+      \      parameters:
+
+      \        - in: path
+
+      \          name: deck_id
+
+      \          required: true
+
+      \          schema:
+
+      \            type: integer
+
+      \            example: 12
+
+      \      requestBody:
+
+      \        content:
+
+      \          application/json:
+
+      \            schema:
+
+      \              title: deck object
+
+      \              type: object
+
+      \              properties:
+
+      \                name:
+
+      \                  type: string
+
+      \                  example: 'Testing'
+
+      \                public_status:
+
+      \                  type: string
+
+      \                  example: '1'
+
+      \                user_id:
+
+      \                  type: integer
+
+      \                  example: 1
+
+      \                created_for:
+
+      \                  type: string
+
+      \                  example: 'STUDENT'
+
+      \      responses:
+
+      \        '200':
+
+      \          description: Successfuly updated
+
+      \          content:
+
+      \            application/json:
+
+      \              schema:
+
+      \                title: deck object
+
+      \                type: object
+
+      \                properties:
+
+      \                  created_at:
+
+      \                    type: string
+
+      \                    example: 'Thu, 25 Nov 2021 00:21:39 -0000'
+
+      \                  created_by_id:
+
+      \                    type: integer
+
+      \                    example: 2
+
+      \                  created_for:
+
+      \                    type: string
+
+      \                    example: 'Type.STUDENT'
+
+      \                  name:
+
+      \                    type: string
+
+      \                    example: 'My Deck'
+
+      \                  id:
+
+      \                    type: integer
+
+      \                    example: 1
+
+      \                  public_status:
+
+      \                    type: boolean
+
+      \                    example: true
+
+      \        '404':
+
+      \          description: Deck not found
+
+      \          content:
+
+      \            application/json:
+
+      \              schema:
+
+      \                title: deck object
+
+      \                type: object
+
+      \                properties:
+
+      \                  error_code:
+
+      \                    type: string
+
+      \                    example: '404'
+
+      \                  error_message:
+
+      \                    type: string
+
+      \                    example: 'Deck not found'
+
+      \        '500':
+
+      \          description: Internal Server Error
+
+      \        '400':
+
+      \          description: Bad request
+
+      \          content:
+
+      \            application/json:
+
+      \              schema:
+
+      \                type: object
+
+      \                properties:
+
+      \                  error_code:
+
+      \                    type: string
+
+      \                  error_message:
+
+      \                    type: string
+
+      \    delete:
+
+      \      description: Operation to delete the deck resource
+
+      \      parameters:
+
+      \        - in: path
+
+      \          name: deck_id
+
+      \          required: true
+
+      \          schema:
+
+      \            type: integer
+
+      \            example: 12
+
+      \      responses:
+
+      \        '200':
+
+      \          description: Successfully Deleted
+
+      \        '404':
+
+      \          description: Deck not found
+
+      \          content:
+
+      \            application/json:
+
+      \              schema:
+
+      \                title: deck object
+
+      \                type: object
+
+      \                properties:
+
+      \                  error_code:
+
+      \                    type: integer
+
+      \                    example: 404
+
+      \                  error_message:
+
+      \                    type: string
+
+      \                    example: 'Deck not found'
+
+      \        '500':
+
+      \          description: Intenal Server Error
+
+
+      \  /api/deck:
+
+      \    description: End point to create deck resource
+
+      \    post:
+
+      \      description: Operation to create the deck resource
+
+      \      requestBody:
+
+      \        content:
+
+      \          application/json:
+
+      \            schema:
+
+      \              title: deck object
+
+      \              type: object
+
+      \              properties:
+
+      \                name:
+
+      \                  type: string
+
+      \                  example: 'Testing'
+
+      \                public_status:
+
+      \                  type: string
+
+      \                  example: '1'
+
+      \                user_id:
+
+      \                  type: integer
+
+      \                  example: 1
+
+      \                created_for:
+
+      \                  type: string
+
+      \                  example: 'STUDENT'
+
+      \      responses:
+
+      \        '201':
+
+      \          description: Successfully Created
+
+      \          content:
+
+      \            application/json:
+
+      \              schema:
+
+      \                title: deck object
+
+      \                type: object
+
+      \                properties:
+
+      \                  created_at:
+
+      \                    type: string
+
+      \                    example: 'Thu, 25 Nov 2021 00:21:39 -0000'
+
+      \                  created_by_id:
+
+      \                    type: integer
+
+      \                    example: 2
+
+      \                  created_for:
+
+      \                    type: string
+
+      \                    example: 'Type.STUDENT'
+
+      \                  name:
+
+      \                    type: string
+
+      \                    example: 'My Deck'
+
+      \                  id:
+
+      \                    type: integer
+
+      \                    example: 1
+
+      \                  public_status:
+
+      \                    type: boolean
+
+      \                    example: true
+
+      \        '409':
+
+      \          description: Deck already exist
+
+      \          content:
+
+      \            application/json:
+
+      \              schema:
+
+      \                title: deck object
+
+      \                type: object
+
+      \                properties:
+
+      \                  error_code:
+
+      \                    type: string
+
+      \                    example: '409'
+
+      \                  error_message:
+
+      \                    type: string
+
+      \                    example: 'Deck already exist'
+
+      \        '500':
+
+      \          description: Internal Server Error
+
+      \        '400':
+
+      \          description: Bad request
+
+      \          content:
+
+      \            application/json:
+
+      \              schema:
+
+      \                type: object
+
+      \                properties:
+
+      \                  error_code:
+
+      \                    type: string
+
+      \                  error_message:
+
+      \                    type: string
+
+      \  /api/decks_cards/{deck_id}:
+
+      \    description: End point to read all cards with deck_id =
+      'deck_id'.
+
+      \    get:
+
+      \      description: Operation to Read Deck Cards.
+
+      \      parameters:
+
+      \        - in: path
+
+      \          name: deck_id
+
+      \          required: true
+
+      \          schema:
+
+      \            type: integer
+
+      \            example: 1
+
+      \      responses:
+
+      \        '200':
+
+      \          description: Request Successful
+
+      \          content:
+
+      \            application/json:
+
+      \              schema:
+
+      \                title: deck array
+
+      \                type: array
+
+      \                items:
+
+      \                  type: object
+
+      \                  properties:
+
+      \                    back:
+
+      \                      type: string
+
+      \                      example: 'Answer'
+
+      \                    created_by_id:
+
+      \                      type: integer
+
+      \                      example: 2
+
+      \                    deck_id:
+
+      \                      type: integer
+
+      \                      example: 8
+
+      \                    front:
+
+      \                      type: string
+
+      \                      example: 'Question'
+
+      \                    id:
+
+      \                      type: integer
+
+      \                      example: 1
+
+      \                    options:
+
+      \                      type: array
+
+      \                      items:
+
+      \                        type: string
+
+      \                        example: 'A'
+
+      \        '500':
+
+      \          description: Internal Server Error
+
+      \        '404':
+
+      \          description: Deck not found
+
+      \          content:
+
+      \            application/json:
+
+      \              schema:
+
+      \                title: deck object
+
+      \                type: object
+
+      \                properties:
+
+      \                  error_code:
+
+      \                    type: string
+
+      \                    example: '404'
+
+      \                  error_message:
+
+      \                    type: string
+
+      \                    example: 'Deck not found'
+
+      \ \ 
+
+      \  /api/card/{card_id}:
+
+      \    description: End point to read, update and delete a card
+      resource with card_id = 'card_id'.
+
+      \    get:
+
+      \      description: Operation to Read Card.
+
+      \      parameters:
+
+      \        - in: path
+
+      \          name: card_id
+
+      \          required: true
+
+      \          schema:
+
+      \            type: integer
+
+      \            example: 8
+
+      \      responses:
+
+      \        '200':
+
+      \          description: Request Successful
+
+      \          content:
+
+      \            application/json:
+
+      \              schema:
+
+      \                title: deck object
+
+      \                type: object
+
+      \                properties:
+
+      \                  back:
+
+      \                    type: string
+
+      \                    example: '4'
+
+      \                  created_at:
+
+      \                    type: string
+
+      \                    example: 'Sat, 27 Nov 2021 21:12:11 -0000'
+
+      \                  created_by_id:
+
+      \                    type: integer
+
+      \                    example: 2
+
+      \                  deck_id:
+
+      \                    type: integer
+
+      \                    example: 8
+
+      \                  front:
+
+      \                    type: string
+
+      \                    example: '2+2'
+
+      \                  id:
+
+      \                    type: integer
+
+      \                    example: 1
+
+      \                  options:
+
+      \                    type: string
+
+      \                    example: '4,5,6,7'
+
+      \        '500':
+
+      \          description: Internal Server Error
+
+      \        '400':
+
+      \          description: Card not found
+
+      \          content:
+
+      \            application/json:
+
+      \              schema:
+
+      \                title: deck object
+
+      \                type: object
+
+      \                properties:
+
+      \                  error_code:
+
+      \                    type: string
+
+      \                    example: '404'
+
+      \                  error_message:
+
+      \                    type: string
+
+      \                    example: 'Card not found'
+
+      \    put:
+
+      \      description: Operation to update the card resource.
+
+      \      parameters:
+
+      \        - in: path
+
+      \          name: card_id
+
+      \          required: true
+
+      \          schema:
+
+      \            type: integer
+
+      \            example: 12
+
+      \      requestBody:
+
+      \        content:
+
+      \          application/json:
+
+      \            schema:
+
+      \              title: deck object
+
+      \              type: object
+
+      \              properties:
+
+      \                back:
+
+      \                  type: string
+
+      \                  example: '4'
+
+      \                front:
+
+      \                  type: string
+
+      \                  example: '2+2'
+
+      \                deck_id:
+
+      \                  type: integer
+
+      \                  example: 1
+
+      \                options:
+
+      \                  type: string
+
+      \                  example: '4,5,6,7'
+
+      \               \ 
+
+      \      responses:
+
+      \        '200':
+
+      \          description: Successfuly updated
+
+      \          content:
+
+      \            application/json:
+
+      \              schema:
+
+      \                title: deck object
+
+      \                type: object
+
+      \                properties:
+
+      \                  back:
+
+      \                    type: string
+
+      \                    example: '4'
+
+      \                  created_at:
+
+      \                    type: string
+
+      \                    example: 'Sat, 27 Nov 2021 21:12:11 -0000'
+
+      \                  created_by_id:
+
+      \                    type: integer
+
+      \                    example: 2
+
+      \                  deck_id:
+
+      \                    type: integer
+
+      \                    example: 8
+
+      \                  front:
+
+      \                    type: string
+
+      \                    example: '2+2'
+
+      \                  id:
+
+      \                    type: integer
+
+      \                    example: 1
+
+      \                  options:
+
+      \                    type: string
+
+      \                    example: '4,5,6,7'
+
+      \        '404':
+
+      \          description: Card not found
+
+      \          content:
+
+      \            application/json:
+
+      \              schema:
+
+      \                title: deck object
+
+      \                type: object
+
+      \                properties:
+
+      \                  error_code:
+
+      \                    type: string
+
+      \                    example: '404'
+
+      \                  error_message:
+
+      \                    type: string
+
+      \                    example: 'Card not found'
+
+      \        '500':
+
+      \          description: Internal Server Error
+
+      \        '400':
+
+      \          description: Bad request
+
+      \          content:
+
+      \            application/json:
+
+      \              schema:
+
+      \                type: object
+
+      \                properties:
+
+      \                  error_code:
+
+      \                    type: string
+
+      \                  error_message:
+
+      \                    type: string
+
+      \    delete:
+
+      \      description: Operation to delete the deck resource
+
+      \      parameters:
+
+      \        - in: path
+
+      \          name: card_id
+
+      \          required: true
+
+      \          schema:
+
+      \            type: integer
+
+      \            example: 12
+
+      \      responses:
+
+      \        '200':
+
+      \          description: Successfully Deleted
+
+      \        '400':
+
+      \          description: Card not found
+
+      \          content:
+
+      \            application/json:
+
+      \              schema:
+
+      \                title: card object
+
+      \                type: object
+
+      \                properties:
+
+      \                  error_code:
+
+      \                    type: integer
+
+      \                    example: 404
+
+      \                  error_message:
+
+      \                    type: string
+
+      \                    example: 'Card not found'
+
+      \        '500':
+
+      \          description: Intenal Server Error
+
+
+      \  /api/card:
+
+      \    description: End point to create deck resource
+
+      \    post:
+
+      \      description: Operation to create the deck resource
+
+      \      requestBody:
+
+      \        content:
+
+      \          application/json:
+
+      \            schema:
+
+      \              title: deck object
+
+      \              type: object
+
+      \              properties:
+
+      \                back:
+
+      \                  type: string
+
+      \                  example: '4'
+
+      \                front:
+
+      \                  type: string
+
+      \                  example: '2+2'
+
+      \                deck_id:
+
+      \                  type: integer
+
+      \                  example: 1
+
+      \                user_id:
+
+      \                  type: integer
+
+      \                  example: 1
+
+      \                options:
+
+      \                  type: string
+
+      \                  example: '4,5,6,7'
+
+      \      responses:
+
+      \        '201':
+
+      \          description: Successfully Created
+
+      \          content:
+
+      \            application/json:
+
+      \              schema:
+
+      \                title: deck object
+
+      \                type: object
+
+      \                properties:
+
+      \                  back:
+
+      \                    type: string
+
+      \                    example: '4'
+
+      \                  created_by_id:
+
+      \                    type: integer
+
+      \                    example: 2
+
+      \                  deck_id:
+
+      \                    type: integer
+
+      \                    example: 8
+
+      \                  front:
+
+      \                    type: string
+
+      \                    example: '2+2'
+
+      \                  id:
+
+      \                    type: integer
+
+      \                    example: 1
+
+      \                  options:
+
+      \                    type: string
+
+      \                    example: '4,5,6,7'
+
+      \        '500':
+
+      \          description: Internal Server Error
+
+      \        '400':
+
+      \          description: Bad request
+
+      \          content:
+
+      \            application/json:
+
+      \              schema:
+
+      \                type: object
+
+      \                properties:
+
+      \                  error_code:
+
+      \                    type: string
+
+      \                  error_message:
+
+      \                    type: string
+
+      \                   \ 
+
+      \  /api/get_score/{user_id}:
+
+      \    description: Get User Average Score of all time using user_id
+
+      \    get:
+
+      \      description: Operation to Read Card.
+
+      \      parameters:
+
+      \        - in: path
+
+      \          name: user_id
+
+      \          required: true
+
+      \          schema:
+
+      \            type: integer
+
+      \            example: 1
+
+      \      responses:
+
+      \        '200':
+
+      \          description: Request Successful
+
+      \          content:
+
+      \            application/json:
+
+      \              schema:
+
+      \                title: deck object
+
+      \                type: object
+
+      \                properties:
+
+      \                  back:
+
+      \                    type: number
+
+      \                    example: 64.44
+
+      \        '500':
+
+      \          description: Internal Server Error
+
+      \        '400':
+
+      \          description: User not found
+
+      \          content:
+
+      \            application/json:
+
+      \              schema:
+
+      \                title: deck object
+
+      \                type: object
+
+      \                properties:
+
+      \                  error:
+
+      \                    type: string
+
+      \                    example: 'User Doesnt Exist'
+
+      \        "
+    contentType: yaml
+    _type: api_spec
+  - _id: env_205bc555fc9d4b92a9717468f5be0525
+    parentId: env_06eaa800a05640c4af3bc83a93b6b6d1
+    modified: 1638030760826
+    created: 1638030760826
+    name: OpenAPI env
+    data:
+      scheme: http
+      base_path: ""
+      host: 172.18.0.21:3633
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1638027156290
+    _type: environment

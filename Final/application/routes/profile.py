@@ -103,14 +103,14 @@ def profileUpdate():
     
 
 
-@profile.route('/get_score/<int:user_id>', methods=['GET'])
-@login_required
+@profile.route('/api/get_score/<int:user_id>', methods=['GET'])
 def get_score(user_id):
-    user_score = db.session.query(User).with_entities(User.review_response()).filter(User.id == int(user_id)).first()
-    if user_score:
+    user = db.session.query(User).filter(User.id == int(user_id)).first()
+    if user:
+        user_score = user.review_response()
         return jsonify({
             "user_score":user_score,
         })
     return jsonify({
-        "error":"User Exist"
+        "error":"User Doesn't Exist"
     })
