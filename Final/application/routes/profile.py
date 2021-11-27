@@ -103,10 +103,9 @@ def profileUpdate():
     
 
 
-@profile.route('/get_score', methods=['GET'])
+@profile.route('/get_score/<int:user_id>', methods=['GET'])
 @login_required
-def get_score():
-    user_id = request.args.get('user_id')
+def get_score(user_id):
     user_score = db.session.query(User).with_entities(User.review_response()).filter(User.id == int(user_id)).first()
     if user_score:
         return jsonify({
