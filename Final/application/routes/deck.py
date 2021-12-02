@@ -170,13 +170,16 @@ def post():
 @deck.route('/view_deck/<int:deck_id>')
 @login_required
 def view_deck(deck_id):
-    deck = None
-    try:
-        deck=get(deck_id)
-        cards = get_all_cards(deck_id)
-    except APIException as e:
-        flash(str(e), 'toast')
-    return render_template("Deck/Card.html", user=current_user, deck=deck, cards=cards)
+	deck = None
+	try:
+		deck=get(deck_id)
+		cards = get_all_cards(deck_id)
+	except APIException as e:
+		flash(str(e), 'toast')
+		if not deck:
+			flash("No Deck Found", "toast")
+			return redirect(url_for('profile.home'))
+	return render_template("Deck/Card.html", user=current_user, deck=deck, cards=cards)
 
 
 #Adding Deck With Login Required

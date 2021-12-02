@@ -139,25 +139,33 @@ def check_answer():
 
         if str(card.back).lower() == answer.strip().lower():
             correct = True
-            
-        new_response = ReviewCard(
-            correct_option = str(card.back),
-            selected_option = answer,
-            time = int(time_take),
-            correct = correct,
-            card_id = int(card_id),
-            review_respose_id = int(session['review_respose_id'])
-        )
+        
+        curr_response = db.session.query(ReviewCard).filter(ReviewCard.card_id == int(card_id)).filter(ReviewCard.review_respose_id == int(session['review_respose_id'])).first()
 
-        db.session.add(new_response)
+        if curr_response:
+            curr_response.selected_option = answer
+            curr_response.time = int(time_take)
+            curr_response.correct = correct
+            db.session.add(curr_response)
+            new_id=curr_response.id
+        else:
+            new_response = ReviewCard(
+                correct_option = str(card.back),
+                selected_option = answer,
+                time = int(time_take),
+                correct = correct,
+                card_id = int(card_id),
+                review_respose_id = int(session['review_respose_id'])
+            )
+
+            db.session.add(new_response)
+            new_id = new_response.id
         db.session.commit()
-
-
 
         res = {
             "correct":correct,
             "answer":card.back,
-            "response_id":new_response.id
+            "response_id":new_id
         }
     except IntegrityError as e:
         res = {

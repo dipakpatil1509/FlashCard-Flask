@@ -78,43 +78,43 @@ def api_put(card_id):
     return put(card_id), 200
     
 def put(card_id):
-    args = card_red.parse_args()
-    front = args.get("front", None)
-    back = args.get("back", None)
-    options = args.get("options", None)
-    deck_id = args.get("deck_id", None)
+	args = card_red.parse_args()
+	front = args.get("front", None)
+	back = args.get("back", None)
+	options = args.get("options", None)
+	deck_id = args.get("deck_id", None)
 
-    if front == "" or front is None or not isinstance(front, str):
-        raise APIException("400","Front is required.")
-    
-    if back == "" or back is None or not isinstance(back, str):
-        raise APIException("400","Back is required.")
-    
-    if options == "" or options is None or not isinstance(options, str) or options.isnumeric():
-        raise APIException("400","Options should be string.")
-    
-    card_curr = db.session.query(Card).filter(Card.id == int(card_id)).first()
+	if front == "" or front is None or not isinstance(front, str):
+		raise APIException("400","Front is required.")
 
-    if card_curr is None:
-        raise APIException("404", "Card not found")
+	if back == "" or back is None or not isinstance(back, str):
+		raise APIException("400","Back is required.")
 
-    card_curr.front = front
-    card_curr.back = back
+	if options == "" or options is None or not isinstance(options, str) or options.isnumeric():
+		raise APIException("400","Options should be string.")
 
-    card_curr.options = options
+	card_curr = db.session.query(Card).filter(Card.id == int(card_id)).first()
 
-    card_curr.deck_id = int(deck_id)
-    try:
-        
-        db.session.add(card_curr)
-        db.session.commit()
-        print(card_curr.options)
+	if card_curr is None:
+		raise APIException("404", "Card not found")
 
-        return card_curr
-    except IntegrityError:
-        raise APIException("400", "Card already exists")
-    except Exception as e:
-        raise APIException("400", str(e))
+	card_curr.front = front
+	card_curr.back = back
+
+	card_curr.options = options
+
+	if deck_id:
+		card_curr.deck_id = int(deck_id)
+	try:
+
+		db.session.add(card_curr)
+		db.session.commit()
+
+		return card_curr
+	except IntegrityError:
+		raise APIException("400", "Card already exists")
+	except Exception as e:
+		raise APIException("400", str(e))
 
 
 #API POST
@@ -176,10 +176,10 @@ def add_card():
     if request.method == "POST":
         try:
             data = post()
+            flash("Successfully Added Card", "toast")
         except APIException as e:
             flash(str(e), 'toast')
     
-    print(deck_id)
     if deck_id:
         deck_id = int(deck_id)
     return render_template('Deck/Add_Card.html', user=current_user, deck_id=deck_id)
@@ -229,7 +229,7 @@ def import_card(deck_id):
                     raise Exception("Front is necessay")
                 
                 if back == "" or back is None:
-                    raise Exception("Back is required")
+                    raise Exception("Back is required.")
                 
                 if options == "" or options is None or not isinstance(options, str):
                     raise Exception("Options are required and should be string.")

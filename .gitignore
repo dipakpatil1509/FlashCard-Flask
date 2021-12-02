@@ -18,3 +18,5 @@ venv
 .vscode/symbols.json
 
 **/migrations
+
+*.zip
